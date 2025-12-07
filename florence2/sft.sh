@@ -1,0 +1,5 @@
+model_name=microsoft/Florence-2-large
+data_path=/mnt/nvme0n1p1/hongxin_li/UI_training_data/scaling_exp/UIPro_processed/LlamaFactory_data/GoClick_CoreSet-v2_3814k_florence.jsonl
+output_dir=/mnt/vdb1/hongxin_li/uipro_ckpt/0307_GoClick-Florence2Large
+
+torchrun --nproc_per_node 8 --nnodes 1 --master_port 16252 florence2/finetune.py --model_name_or_path $model_name --florence_path $model_name --data_path $data_path --bf16 True --fix_vit True --output_dir $output_dir  --num_train_epochs 1 --per_device_train_batch_size 4 --per_device_eval_batch_size 2 --gradient_accumulation_steps 1 --eval_strategy no --save_strategy epoch --save_total_limit 5 --learning_rate 1e-4 --weight_decay 0.1 --adam_beta2 0.95 --warmup_ratio 0.01 --lr_scheduler_type cosine --logging_steps 2 --report_to none --run_name 0228_GoClick-Florence2Base_CoreSet4296k --model_max_length 1024 --lazy_preprocess True
