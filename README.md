@@ -31,6 +31,9 @@
 
 ## 🎯 Overview
 
+<img src="assets/goclick_overview.png" alt="GoClick overview" style="border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin: 20px 0;"/>
+
+
 **GoClick** is a novel two-stage framework for UI element grounding that separates the planning and grounding tasks. Instead of directly predicting click coordinates, GoClick first generates a function description of the target element, then uses this description to precisely locate the element in the UI screenshot.
 
 ### Why Two-Stage?
@@ -52,7 +55,9 @@
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Two-Stage Agentic Architecture
+
+<img src="assets/2stage_pipeline.png" alt="GoClick overview" style="border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin: 20px 0;"/>
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
