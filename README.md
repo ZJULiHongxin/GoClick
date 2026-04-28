@@ -1,13 +1,14 @@
-# 🎯 GoClick: Two-Stage UI Grounding with Function Description
+# 🎯 GoClick: Super Fast Lightweight GUI Grounding Expert
 
 <div align="center">
 
 **A powerful two-stage framework for precise UI element grounding using function descriptions**
+[![Paper](https://img.shields.io/badge/Paper-GoClick-blue?logo=adobeacrobatreader)](https://arxiv.org/abs/2604.23941)
+[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick-Large)
+[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Dataset-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick_Coreset_3814k)
+[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-SFTData-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick_sft_data)
 
-[![Paper](https://img.shields.io/badge/Paper-IJCV-blue)](IJCV_GoClick.pdf)
-[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Dataset-yellow)](https://huggingface.co/datasets)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-orange.svg)](https://pytorch.org/)
 
 </div>
 
@@ -498,10 +499,14 @@ Evaluating the device-cloud collaboration agent on the AITW benchmark. Values ar
 If you use GoClick in your research, please cite our paper:
 
 ```bibtex
-@article{goclick2025,
-  title={GoClick: Lightweight Element Grounding Model for Autonomous GUI Interaction},
-  author={Hongxin Li, Yuntao Chen, Zhaoxiang Zhang},
-  year={2025}
+@misc{li2026goclicklightweightelementgrounding,
+      title={GoClick: Lightweight Element Grounding Model for Autonomous GUI Interaction}, 
+      author={Hongxin Li and Yuntao Chen and Zhaoxiang Zhang},
+      year={2026},
+      eprint={2604.23941},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2604.23941}, 
 }
 ```
 
