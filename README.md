@@ -3,6 +3,7 @@
 <div align="center">
 
 **A powerful two-stage framework for precise UI element grounding using function descriptions**
+
 [![Paper](https://img.shields.io/badge/Paper-GoClick-blue?logo=adobeacrobatreader)](https://arxiv.org/abs/2604.23941)
 [![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick-Large)
 [![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Dataset-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick_Coreset_3814k)
@@ -33,7 +34,6 @@
 ## 🎯 Overview
 
 <img src="assets/goclick_overview.png" alt="GoClick overview" style="border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin: 20px 0;"/>
-
 
 **GoClick** is a novel two-stage framework for UI element grounding that separates the planning and grounding tasks. Instead of directly predicting click coordinates, GoClick first generates a function description of the target element, then uses this description to precisely locate the element in the UI screenshot.
 
@@ -76,13 +76,17 @@
 ```
 
 ### Stage 1: Planning
+
 The planner analyzes the UI screenshot and task context to:
+
 - Determine the **action type** (click, scroll, input_text, etc.)
 - Generate a **function description** of what the target element should do
 - Extract the **intent** summarizing the action
 
 ### Stage 2: Grounding
+
 The grounder uses the function description to:
+
 - Locate the precise UI element matching the description
 - Return the **target coordinates** for the action
 
@@ -257,8 +261,8 @@ Key training arguments:
 ---
 
 ## 📊 GUI Grounding Evaluation
-We recommend using [AutoGUI evaluation kit](https://autogui-project.github.io/) to perform GUI element grounding evaluation on multiple GPUs.
 
+We recommend using [AutoGUI evaluation kit](https://autogui-project.github.io/) to perform GUI element grounding evaluation on multiple GPUs.
 
 ## 📊 Agent Task Evaluation
 
@@ -282,7 +286,6 @@ root/
 
 #### Stage 1: Planning
 
-
 ```bash
 python utils/eval_utils/eval_aitw_with_funcgnd/eval_aitw_with_funcgnd.py \
     --planner gpt-4o \
@@ -292,6 +295,7 @@ python utils/eval_utils/eval_aitw_with_funcgnd/eval_aitw_with_funcgnd.py \
 ```
 
 #### Stage 2: Grounding
+
 ```bash
 python utils/eval_utils/eval_aitw_with_funcgnd/grounding.py \
     --planning_result_file utils/eval_utils/eval_aitw_with_funcgnd/eval_results/gpt-4o/TIMESTAMP.json \
@@ -302,13 +306,14 @@ python utils/eval_utils/eval_aitw_with_funcgnd/grounding.py \
 
 ### AndroidControl Benchmark
 
-First download and unzip the [GoClick AndroidControl Test Data](https://huggingface.co/datasets/HongxinLi/AndroidControl_test) via 
+First download and unzip the [GoClick AndroidControl Test Data](https://huggingface.co/datasets/HongxinLi/AndroidControl_test) via
+
 ```
 hf download HongxinLi/AndroidControl_test  --repo-type dataset --local-dir path/to/AndroidControl_test
 ```
 
-
 #### Stage 1: Planning
+
 ```bash
 python utils/eval_utils/eval_andcon_with_funcgnd/eval_androidcontrol_with_funcgnd.py \
     --andcon_dir path/to/AndroidControl_test \
@@ -319,6 +324,7 @@ python utils/eval_utils/eval_andcon_with_funcgnd/eval_androidcontrol_with_funcgn
 ```
 
 #### Stage 2: Grounding
+
 ```bash
 python utils/eval_utils/eval_andcon_with_funcgnd/grounding.py \
     --andcon_dir path/to/AndroidControl_test \
@@ -342,6 +348,7 @@ root/
 ```
 
 #### Stage 1: Planning
+
 ```bash
 python utils/eval_utils/eval_guiact_with_funcgnd/eval_guiact_with_funcgnd.py \
     --guicourse_dir root/GUICourse \
@@ -353,6 +360,7 @@ python utils/eval_utils/eval_guiact_with_funcgnd/eval_guiact_with_funcgnd.py \
 ```
 
 #### Stage 2: Grounding
+
 ```bash
 python utils/eval_utils/eval_guiact_with_funcgnd/grounding.py \
     --guicourse_dir root/GUICourse \
@@ -375,6 +383,7 @@ root/
 ```
 
 #### Stage 1: Planning
+
 ```bash
 python utils/eval_utils/eval_mind2web_with_funcgnd/eval_mind2web.py \
     --mind2web_dir root/Mind2Web/mind2web_images/ \
@@ -386,6 +395,7 @@ python utils/eval_utils/eval_mind2web_with_funcgnd/eval_mind2web.py \
 ```
 
 #### Stage 2: Grounding
+
 ```bash
 python utils/eval_utils/eval_mind2web_with_funcgnd/grounding.py \
     --mind2web_dir root/Mind2Web/mind2web_images/ \
@@ -411,11 +421,12 @@ Common arguments for evaluation scripts:
 
 GoClick is evaluated on four major UI grounding benchmarks:
 
-| Benchmark | Description | Metrics |
-|-----------|-------------|---------|
-| **AITW** | Android In The Wild | Action Accuracy, Element Accuracy, Click Accuracy |
-| **AndroidControl** | Android UI Control | Step Accuracy, Element Accuracy, Action Type Accuracy |
-| **GUIAct** | GUI Action Dataset | Step Accuracy, Element Accuracy (Web & Mobile) |
+| Benchmark                | Description         | Metrics                                               |
+| ------------------------ | ------------------- | ----------------------------------------------------- |
+| **AITW**           | Android In The Wild | Action Accuracy, Element Accuracy, Click Accuracy     |
+| **AndroidControl** | Android UI Control  | Step Accuracy, Element Accuracy, Action Type Accuracy |
+| **GUIAct**         | GUI Action Dataset  | Step Accuracy, Element Accuracy (Web & Mobile)        |
+
 <!-- | **Mind2Web** | Web Navigation | Operation F1, Element Accuracy, Step Success Rate | -->
 
 ### Benchmark Data
@@ -423,6 +434,7 @@ GoClick is evaluated on four major UI grounding benchmarks:
 - **AITW**: Available via `datasets.load_dataset("HongxinLi/AITW_test", split='test')`
 - **AndroidControl**: Download from [official repository](https://github.com/google-research/google-research/tree/master/android_in_the_wild)
 - **GUIAct**: Available in processed format (see evaluation scripts for paths)
+
 <!-- - **Mind2Web**: Download from [official repository](https://github.com/OSU-NLP-Group/Mind2Web) -->
 
 ---
@@ -434,57 +446,58 @@ GoClick is evaluated on four major UI grounding benchmarks:
 ### Performance Highlights
 
 #### AITW Benchmark
+
 Evaluating the device-cloud collaboration agent on the AITW benchmark. Values are **Step SR (Click Accuracy)**.
 
-| Planner | Grounding Model | General | Install | Google Apps | Single | Web shopping | Overall |
-|---------|-----------------|---------|---------|-------------|--------|--------------|---------|
-| Gemini-2-Flash-Exp | - | 26.4 (18.2) | 28.5 (26.9) | 30.3 (22.9) | 41.9 (29.0) | 20.2 (22.7) | 29.5 (23.6) |
-| Gemini-2-Flash-Exp + SoM | - | 29.9 (32.2) | 33.9 (41.4) | 33.9 (30.1) | 48.5 (56.8) | 27.9 (37.8) | 34.8 (38.3) |
-| Gemini-2-Flash-Exp | GoClick-L w/ Intent Gnd. (ours) | 43.1 (48.1) | **44.1** (52.9) | **49.5** (54.6) | **59.7** (67.4) | 39.8 (54.8) | **47.2** (54.0) |
-| Gemini-2-Flash-Exp | GoClick-L w/ Func. Gnd. (ours) | **43.2** (48.4) | 40.9 (47.4) | 48.5 (52.9) | 59.4 (66.8) | **40.0** (55.0) | 46.4 (52.5) |
-| GPT-4o | - | 28.2 (24.9) | 32.9 (30.1) | 31.9 (27.6) | 44.2 (47.1) | 25.9 (30.0) | 27.2 (29.9) |
-| GPT-4o + SoM | - | 33.7 (37.2) | 43.2 (53.8) | 41.4 (51.8) | 53.0 (63.2) | 39.2 (51.0) | 42.1 (50.4) |
-| GPT-4o | GoClick-L w/ Intent Gnd. (ours) | **45.9** (57.4) | **50.0** (59.0) | **49.7** (57.1) | **54.4** (69.7) | 44.5 (60.5) | **48.9** (59.7) |
-| GPT-4o | GoClick-L w/ Func. Gnd. (ours) | 45.7 (56.9) | 47.1 (51.2) | 47.9 (54.1) | 53.5 (67.4) | **44.0** (59.7) | 47.6 (57.5) |
+| Planner                  | Grounding Model                 | General               | Install               | Google Apps           | Single                | Web shopping          | Overall               |
+| ------------------------ | ------------------------------- | --------------------- | --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| Gemini-2-Flash-Exp       | -                               | 26.4 (18.2)           | 28.5 (26.9)           | 30.3 (22.9)           | 41.9 (29.0)           | 20.2 (22.7)           | 29.5 (23.6)           |
+| Gemini-2-Flash-Exp + SoM | -                               | 29.9 (32.2)           | 33.9 (41.4)           | 33.9 (30.1)           | 48.5 (56.8)           | 27.9 (37.8)           | 34.8 (38.3)           |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Intent Gnd. (ours) | 43.1 (48.1)           | **44.1** (52.9) | **49.5** (54.6) | **59.7** (67.4) | 39.8 (54.8)           | **47.2** (54.0) |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Func. Gnd. (ours)  | **43.2** (48.4) | 40.9 (47.4)           | 48.5 (52.9)           | 59.4 (66.8)           | **40.0** (55.0) | 46.4 (52.5)           |
+| GPT-4o                   | -                               | 28.2 (24.9)           | 32.9 (30.1)           | 31.9 (27.6)           | 44.2 (47.1)           | 25.9 (30.0)           | 27.2 (29.9)           |
+| GPT-4o + SoM             | -                               | 33.7 (37.2)           | 43.2 (53.8)           | 41.4 (51.8)           | 53.0 (63.2)           | 39.2 (51.0)           | 42.1 (50.4)           |
+| GPT-4o                   | GoClick-L w/ Intent Gnd. (ours) | **45.9** (57.4) | **50.0** (59.0) | **49.7** (57.1) | **54.4** (69.7) | 44.5 (60.5)           | **48.9** (59.7) |
+| GPT-4o                   | GoClick-L w/ Func. Gnd. (ours)  | 45.7 (56.9)           | 47.1 (51.2)           | 47.9 (54.1)           | 53.5 (67.4)           | **44.0** (59.7) | 47.6 (57.5)           |
 
 #### AndroidControl Benchmark
 
-| Planner | Grounding Model | Step SR ↑ | Click Acc. ↑ |
-|---------|-----------------|-----------|--------------|
-| Gemini-2-Flash-Exp | - | 20.6 | 11.4 |
-| Gemini-2-Flash-Exp + SoM | - | 35.3 | 44.8 |
-| Gemini-2-Flash-Exp | GoClick-L w/ Intent Gnd. (ours) | **42.9** | **49.8** |
-| Gemini-2-Flash-Exp | GoClick-L w/ Func. Gnd. (ours) | 41.9 | 48.3 |
-| GPT-4o | - | 19.5 | 14.0 |
-| GPT-4o + SoM | - | 39.0 | 48.3 |
-| GPT-4o | GoClick-L w/ Intent Gnd. (ours) | **42.5** | **53.3** |
-| GPT-4o | GoClick-L w/ Func. Gnd. (ours) | 41.9 | 52.2 |
+| Planner                  | Grounding Model                 | Step SR ↑     | Click Acc. ↑  |
+| ------------------------ | ------------------------------- | -------------- | -------------- |
+| Gemini-2-Flash-Exp       | -                               | 20.6           | 11.4           |
+| Gemini-2-Flash-Exp + SoM | -                               | 35.3           | 44.8           |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Intent Gnd. (ours) | **42.9** | **49.8** |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Func. Gnd. (ours)  | 41.9           | 48.3           |
+| GPT-4o                   | -                               | 19.5           | 14.0           |
+| GPT-4o + SoM             | -                               | 39.0           | 48.3           |
+| GPT-4o                   | GoClick-L w/ Intent Gnd. (ours) | **42.5** | **53.3** |
+| GPT-4o                   | GoClick-L w/ Func. Gnd. (ours)  | 41.9           | 52.2           |
 
 #### GUIAct-Mobile Benchmark
 
-| Planner | Grounding Model | Step SR ↑ | Click Acc. ↑ |
-|---------|-----------------|-----------|--------------|
-| Gemini-2-Flash-Exp | - | 19.6 | 17.6 |
-| Gemini-2-Flash-Exp + SoM | - | 23.3 | 25.2 |
-| Gemini-2-Flash-Exp | GoClick-L w/ Intent Gnd. (ours) | **28.7** | **28.6** |
-| Gemini-2-Flash-Exp | GoClick-L w/ Func. Gnd. (ours) | 27.2 | 26.1 |
-| GPT-4o | - | 28.1 | 28.8 |
-| GPT-4o + SoM | - | 27.2 | 28.6 |
-| GPT-4o | GoClick-L w/ Intent Gnd. (ours) | **34.6** | **29.6** |
-| GPT-4o | GoClick-L w/ Func. Gnd. (ours) | 34.2 | 28.8 |
+| Planner                  | Grounding Model                 | Step SR ↑     | Click Acc. ↑  |
+| ------------------------ | ------------------------------- | -------------- | -------------- |
+| Gemini-2-Flash-Exp       | -                               | 19.6           | 17.6           |
+| Gemini-2-Flash-Exp + SoM | -                               | 23.3           | 25.2           |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Intent Gnd. (ours) | **28.7** | **28.6** |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Func. Gnd. (ours)  | 27.2           | 26.1           |
+| GPT-4o                   | -                               | 28.1           | 28.8           |
+| GPT-4o + SoM             | -                               | 27.2           | 28.6           |
+| GPT-4o                   | GoClick-L w/ Intent Gnd. (ours) | **34.6** | **29.6** |
+| GPT-4o                   | GoClick-L w/ Func. Gnd. (ours)  | 34.2           | 28.8           |
 
 #### GUIAct-Web Benchmark
 
-| Planner | Grounding Model | Step SR ↑ | Click Acc. ↑ |
-|---------|-----------------|-----------|--------------|
-| Gemini-2-Flash-Exp | - | 16.8 | 8.0 |
-| Gemini-2-Flash-Exp + SoM | - | 32.9 | 44.7 |
-| Gemini-2-Flash-Exp | GoClick-L w/ Intent Gnd. (ours) | **41.7** | **51.6** |
-| Gemini-2-Flash-Exp | GoClick-L w/ Func. Gnd. (ours) | 39.9 | 48.5 |
-| GPT-4o | - | 18.2 | 5.1 |
-| GPT-4o + SoM | - | 42.3 | 55.6 |
-| GPT-4o | GoClick-L w/ Intent Gnd. (ours) | **50.5** | **62.0** |
-| GPT-4o | GoClick-L w/ Func. Gnd. (ours) | 47.8 | 57.2 |
+| Planner                  | Grounding Model                 | Step SR ↑     | Click Acc. ↑  |
+| ------------------------ | ------------------------------- | -------------- | -------------- |
+| Gemini-2-Flash-Exp       | -                               | 16.8           | 8.0            |
+| Gemini-2-Flash-Exp + SoM | -                               | 32.9           | 44.7           |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Intent Gnd. (ours) | **41.7** | **51.6** |
+| Gemini-2-Flash-Exp       | GoClick-L w/ Func. Gnd. (ours)  | 39.9           | 48.5           |
+| GPT-4o                   | -                               | 18.2           | 5.1            |
+| GPT-4o + SoM             | -                               | 42.3           | 55.6           |
+| GPT-4o                   | GoClick-L w/ Intent Gnd. (ours) | **50.5** | **62.0** |
+| GPT-4o                   | GoClick-L w/ Func. Gnd. (ours)  | 47.8           | 57.2           |
 
 ### Key Findings
 
