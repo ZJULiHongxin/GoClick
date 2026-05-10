@@ -5,7 +5,8 @@
 **A powerful two-stage framework for precise UI element grounding using function descriptions**
 
 [![Paper](https://img.shields.io/badge/Paper-GoClick-blue?logo=adobeacrobatreader)](https://arxiv.org/abs/2604.23941)
-[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick-Large)
+[![GoClickLarge](https://img.shields.io/badge/🤗%20GoClickLarge-Model-yellow)](https://huggingface.co/HongxinLi/GoClick-Large)
+[![GoClickBase](https://img.shields.io/badge/🤗%20GoClickBase-Model-yellow)](https://huggingface.co/HongxinLi/GoClick-Base)
 [![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Dataset-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick_Coreset_3814k)
 [![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-SFTData-yellow)](https://huggingface.co/datasets/HongxinLi/GoClick_sft_data)
 
@@ -117,6 +118,10 @@ pip install -r requirements.txt
 ---
 
 ## 🚀 Quick Start
+
+### Prerequisite
+
+`pip install transformers==4.45.0 timm`
 
 ### Using Pre-trained Model
 
